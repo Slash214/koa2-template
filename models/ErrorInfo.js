@@ -12,4 +12,12 @@ module.exports = {
       code: 5002,
       message: '参数不能为空'
     },
+    TokenNotNull: {
+      code: 5003,
+      message: '令牌不存在'
+    },
+    TokenFailure: {
+      code: 5004,
+      message: '令牌过期了'
+    }
 }
