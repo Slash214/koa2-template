@@ -1,6 +1,7 @@
 # overview
 #### 这是一个关于封装koa2的API接口项目,根据我自己的使用习惯封装的API接口框架,使用了 koa2  mysql2 sequelize 目前正在开发中,打算制作两个版本一个是集成简单的增删查改, 一个是demo展示包括比较常见的qq授权登陆,微信转发,图片上传等功能,
 
+
 # 依赖说明 versions
 -  mysql2  (mysql8.0+) v2.3.3
 -  koa2-cors  跨域包 v2.0.6
@@ -9,6 +10,8 @@
 -  cross-env  环境切换 v7.0.3
 -  koa  v2.13.4
 -  sequelize 数据库操作 v6.19.2
+###  node v14.16.1 npm 6.x
+
 
 # Koa2-Api-Template
 ### 功能开发

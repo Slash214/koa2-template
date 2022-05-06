@@ -1,13 +1,15 @@
 const app = require('../app')
 const http = require('http')
 const debug = require('debug')('demo:server')
+const config = require('../conf')
 
-
-const port = normalizePort(process.env.PORT || '7100')
+const port = normalizePort(process.env.PORT || config.port)
 
 const server = http.createServer(app.callback())
 
-server.listen(port)
+server.listen(config.port, () => {
+  console.log(`监听端口 http://127.0.0.1:${config.port}`)
+})
 server.on('error', onError)
 server.on('listening', onListening)
 

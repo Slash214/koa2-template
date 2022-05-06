@@ -1,8 +1,8 @@
-
+const { SuccessModel } = require('../models/ResModel')
 
 class TestCtl {
     async select (ctx) {
-        ctx.body = { message: '测试', code: 200 }
+        ctx.body = new SuccessModel({})
     }
 }
 

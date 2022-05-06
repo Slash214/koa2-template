@@ -1,6 +1,7 @@
 const Koa = require('koa')
 const app = new Koa()
-const body = require('koa-body')
+const bodyparse = require('koa-bodyparser')
+const json = require('koa-json')
 const logger = require('koa-logger')
 const onerror = require('koa-onerror')
 const cors = require('koa2-cors')
@@ -14,21 +15,22 @@ app.use(cors())
 onerror(app)
 
 // 中间件
-app.use(body({
-    jsonLimit: 2 * 1024 * 1024,
+app.use(bodyparse({
+    enableTypes:['json', 'form', 'text']
 }))
-app.use(logger())
+.use(json())
+.use(logger())
+
 
 routing(app)
 app.use(noRouter.routes(), noRouter.allowedMethods())
-// 日志
+
 app.use(async (ctx, next) => {
     const start = new Date()
     await next()
     const ms = new Date() - start
     console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
-
 
 app.on('error', (err, ctx) => {
     console.error('server error | 服务器错误', err, ctx)
