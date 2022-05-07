@@ -16,12 +16,18 @@
 -  cross-env  环境切换 v7.0.3
 -  koa  v2.13.4
 -  sequelize 数据库操作 v6.19.2 
+-  formidable-upload-koa  图片上传插件
+-  fs-extra 文件读写
+-  jsonwebtoken jwt生成令牌
+-  axios  网络请求
 
 
 # Koa2-Api-Template
 ### 功能开发
 - 支持基础的增删查改
 - 完成微信支付代码逻辑
+- 完成QQ授权登陆代码
+- 图片上传
 - 等待开发中
 
 

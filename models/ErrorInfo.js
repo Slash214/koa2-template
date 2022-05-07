@@ -19,5 +19,9 @@ module.exports = {
     TokenFailure: {
       code: 5004,
       message: '令牌过期了'
+    },
+    ImgFileNotNull: {
+      code: 5005,
+      message: '图片文件不存在'
     }
 }
