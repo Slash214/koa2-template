@@ -1,12 +1,13 @@
 /**
  * @description 微信支付逻辑订单信息处理
- * @author Joshua yang 
+ * @author Joshua yang
+ * @desc 补充：如果是wechatpay-node-v3 方法 这个utils的方法就可以不使用了！
  */
 
 
  var crypto = require('crypto')
  const {wechatApp} = require('./index')
- 
+
  function getWxPayOrdrID(){
    var myDate = new Date();
    var year = myDate.getFullYear();
@@ -36,11 +37,11 @@
    } else if(msecond >= 10 && msecond < 100){
        msecond = String(String(0) + String(second));
    }
- 
+
    var currentDate = String(year) + String(mouth) + String(day) + String(hour) + String(minute) + String(second) + String(msecond);
    return currentDate;
  }
- 
+
  // 封装成订单数据
  function getfromData(appId, detail, mch_id, nonce_str,notify_url, openid, out_trade_no, spbill_create_ip, total_fee) {
    var formData = "<xml>";
@@ -58,7 +59,7 @@
    formData += "</xml>";
    return formData;
  }
- 
+
  // 随机字符串产生函数
  function createNonceStr() {
    return Math.random().toString(36).substr(2, 15)
@@ -67,7 +68,7 @@
  function createTimeStamp() {
    return parseInt(new Date().getTime() / 1000) + ''
  }
- 
+
  var get_client_ip = function(req) {
    var ip = req.headers['x-forwarded-for'] ||
        req.ip ||
@@ -79,7 +80,7 @@
    }
    return ip;
  };
- 
+
  function paysignjsapi(appid,body,mch_id,nonce_str,notify_url,openid,out_trade_no,spbill_create_ip,total_fee,trade_type) {
    var ret = {
        appid: appid,
@@ -99,7 +100,7 @@
    var sign = crypto.createHash('md5').update(string, 'utf8').digest('hex');
    return sign.toUpperCase()
  }
- 
+
  //解析xml
  function getXMLNodeValue(node_name, xml) {
    var tmp = xml.split("<" + node_name + ">");
@@ -107,8 +108,8 @@
    var _tmp = tmp[1].split("</" + node_name + ">");
    return _tmp[0];
  }
- 
- 
+
+
  function paysignjs(appid, nonceStr, package, signType, timeStamp) {
    var ret = {
        appId: appid,
@@ -121,8 +122,8 @@
    string = string + '&key='+wechatApp.key;
    return crypto.createHash('md5').update(string, 'utf8').digest('hex');
  }
- 
- 
+
+
  function raw1(args) {
    var keys = Object.keys(args);
    keys = keys.sort()
@@ -130,7 +131,7 @@
    keys.forEach(function(key) {
        newArgs[key] = args[key];
    });
- 
+
    var string = '';
    for(var k in newArgs) {
        string += '&' + k + '=' + newArgs[k];
@@ -138,7 +139,7 @@
    string = string.substr(1);
    return string;
  }
- 
+
  function raw(args) {
    var keys = Object.keys(args);
    keys = keys.sort();
@@ -153,7 +154,7 @@
    string = string.substr(1);
    return string;
  }
- 
+
  module.exports = {
    getXMLNodeValue,
    paysignjs,
@@ -163,4 +164,3 @@
    getWxPayOrdrID,
    getfromData
  }
- 

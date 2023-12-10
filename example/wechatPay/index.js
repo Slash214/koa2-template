@@ -17,11 +17,16 @@
 
 
 //以下四个变量都从微信公众平台获取或设置  此为测试账号，不可调试
+
+// 2023-12-10 update
+// 使用：wechatpay-node-v3 库实现
+
+
 const wechatApp = {
-    appId: 'appId', 
+    appId: 'appId',
     secret: '小程序密钥',
-    key: '商家密钥', 
-    mch_id: '商家号' 
+    key: '商家密钥',
+    mch_id: '商家号'
 }
 
 module.exports = {
